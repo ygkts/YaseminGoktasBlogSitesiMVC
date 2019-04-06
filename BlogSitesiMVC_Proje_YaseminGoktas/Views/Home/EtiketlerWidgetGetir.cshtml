@@ -1,0 +1,16 @@
+﻿@{ 
+    Layout = null;
+}
+
+@model IEnumerable<BlogSitesiMVC_Proje_YaseminGoktas.Models.Etiket>
+
+
+<aside class="single-sidebar-widget tag_cloud_widget">
+    <h4 class="widget_title">E T İ K E T L E R</h4>
+    <ul class="list">
+        @foreach (var tag in Model)
+        {
+            <li><a href="/Etiket/Index/@tag.Id">@tag.Adi ( @tag.MakaleEtiket.Count() )</a></li>
+        }
+    </ul>
+</aside>

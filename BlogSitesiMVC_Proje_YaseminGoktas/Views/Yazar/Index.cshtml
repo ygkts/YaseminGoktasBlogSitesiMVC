@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Yazar -";
+}
+
+@{ 
+    Html.RenderAction("MakaleListele", new { id = Model });
+}
+
+<br />
+<a href="/Yonetim/MakaleYaz"><button type="button" class="btn btn-dark" style="width:300px;">Makale Ekle</button></a>
+<p></p>
+<table class="table table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Başlık</th>
+        <th>İçerik</th>
+        <th>Yayın Tarihi</th>
+        <th>Kategori</th>
+        <th>Makale Tip</th>
+        <th>Yazar</th>
+        <th>Kapak Resim</th>
+        <th>Görüntülenme</th>
+        <th>Beğeni</th>
+        <th>Aktif</th>
+    </tr>
+    @foreach (var makale in Model)
+    {
+        <tr>
+            <td>@makale.ID</td>
+            <td>@makale.Baslik</td>
+            <td>@makale.Icerik</td>
+            <td>@makale.YayinTarihi</td>
+            <td>@makale.Kategori.Ad</td>
+            <td>@makale.MakaleTip.Ad.</td>
+            <td>@makale.Kullanici.Adi @makale.Kullanici.Soyadi </td>
+            <td>@makale.MultiMedia.BuyukResimYol</td>
+            <td>@makale.Goruntulenme</td>
+            <td>@makale.Begeni</td>
+            <td>@makale.Aktif</td>
+            <td><a href="/Kategoriler/Guncelle/@makale.ID"><button type="button" class="btn btn-info">Güncelle</button></a></td>
+            <td><a href="/Kategoriler/Sil/@makale.ID"><button type="button" class="btn btn-danger">Sil</button></a></td>
+        </tr>
+    }
+</table>

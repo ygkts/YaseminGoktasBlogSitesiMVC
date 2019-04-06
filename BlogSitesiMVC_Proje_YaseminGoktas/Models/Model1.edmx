@@ -1,0 +1,1701 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="YaseminBlogSitesiMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="aspnet_Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LoweredApplicationName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="aspnet_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PasswordFormat" Type="int" Nullable="false" />
+          <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="MobilePIN" Type="nvarchar" MaxLength="16" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="LoweredEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
+          <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="ntext" />
+        </EntityType>
+        <EntityType Name="aspnet_Paths">
+          <Key>
+            <PropertyRef Name="PathId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Path" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LoweredPath" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_PersonalizationAllUsers">
+          <Key>
+            <PropertyRef Name="PathId" />
+          </Key>
+          <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PageSettings" Type="image" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_PersonalizationPerUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PathId" Type="uniqueidentifier" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="PageSettings" Type="image" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_Profile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyNames" Type="ntext" Nullable="false" />
+          <Property Name="PropertyValuesString" Type="ntext" Nullable="false" />
+          <Property Name="PropertyValuesBinary" Type="image" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LoweredRoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="aspnet_SchemaVersions">
+          <Key>
+            <PropertyRef Name="Feature" />
+            <PropertyRef Name="CompatibleSchemaVersion" />
+          </Key>
+          <Property Name="Feature" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CompatibleSchemaVersion" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="IsCurrentVersion" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LoweredUserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_WebEvent_Events">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="EventTimeUtc" Type="datetime" Nullable="false" />
+          <Property Name="EventTime" Type="datetime" Nullable="false" />
+          <Property Name="EventType" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="EventSequence" Type="decimal" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="EventOccurrence" Type="decimal" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="EventCode" Type="int" Nullable="false" />
+          <Property Name="EventDetailCode" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ApplicationPath" Type="nvarchar" MaxLength="256" />
+          <Property Name="ApplicationVirtualPath" Type="nvarchar" MaxLength="256" />
+          <Property Name="MachineName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="RequestUrl" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
+          <Property Name="Details" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Etiket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Soyadi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+          <Property Name="Nick" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResimID" Type="int" />
+          <Property Name="YazarMi" Type="bit" Nullable="false" />
+          <Property Name="Aktif" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Makale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Baslik" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Icerik" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="YayinTarihi" Type="datetime" Nullable="false" />
+          <Property Name="KategoriID" Type="int" Nullable="false" />
+          <Property Name="MakaleTipID" Type="int" Nullable="false" />
+          <Property Name="YazarID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KapakResimID" Type="int" Nullable="false" />
+          <Property Name="Goruntulenme" Type="int" Nullable="false" />
+          <Property Name="Begeni" Type="int" Nullable="false" />
+          <Property Name="Aktif" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MakaleEtiket">
+          <Key>
+            <PropertyRef Name="MakaleID" />
+            <PropertyRef Name="EtiketID" />
+          </Key>
+          <Property Name="MakaleID" Type="int" Nullable="false" />
+          <Property Name="EtiketID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MakaleResim">
+          <Key>
+            <PropertyRef Name="MakaleID" />
+            <PropertyRef Name="ResimID" />
+          </Key>
+          <Property Name="MakaleID" Type="int" Nullable="false" />
+          <Property Name="ResimID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MakaleTip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'YaseminBlogSitesiMVC.dbo.Mesajlar' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Mesajlar">
+          <Property Name="GonderenUye" Type="uniqueidentifier" />
+          <Property Name="AlanUye" Type="uniqueidentifier" />
+          <Property Name="Mesaj" Type="nvarchar" MaxLength="500" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="Goruldu" Type="bit" />
+        </EntityType>-->
+        <EntityType Name="MultiMedia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KucukResimYol" Type="nvarchar" MaxLength="500" />
+          <Property Name="OrtaResimYol" Type="nvarchar" MaxLength="500" />
+          <Property Name="BuyukResimYol" Type="nvarchar" MaxLength="500" />
+          <Property Name="VideoYol" Type="nvarchar" MaxLength="500" />
+          <Property Name="EkleyenID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EklenmeTarihi" Type="datetime" Nullable="false" />
+          <Property Name="Goruntulenme" Type="int" Nullable="false" />
+          <Property Name="Begeni" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'YaseminBlogSitesiMVC.dbo.SiteTakip' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SiteTakip">
+          <Key>
+            <PropertyRef Name="MailAdress" />
+          </Key>
+          <Property Name="MailAdress" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="YazarID" Type="uniqueidentifier" />
+          <Property Name="KategoriID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Yorum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Baslik" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Icerik" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="MakaleID" Type="int" Nullable="false" />
+          <Property Name="EklenmeTarihi" Type="datetime" Nullable="false" />
+          <Property Name="YazarID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Aktif" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'YaseminBlogSitesiMVC.dbo.ZiyaretciIPLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ZiyaretciIPLog">
+          <Key>
+            <PropertyRef Name="IPAddress" />
+            <PropertyRef Name="Tarih" />
+          </Key>
+          <Property Name="IPAddress" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__aspnet_Me__Appli__19DFD96B">
+          <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="Self.aspnet_Membership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Me__UserI__1AD3FDA4">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="Self.aspnet_Membership" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pa__Appli__4B7734FF">
+          <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Paths">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__PathI__51300E55">
+          <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="1" />
+          <End Role="aspnet_PersonalizationAllUsers" Type="Self.aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Paths">
+              <PropertyRef Name="PathId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationAllUsers">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__PathI__55009F39">
+          <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="0..1" />
+          <End Role="aspnet_PersonalizationPerUser" Type="Self.aspnet_PersonalizationPerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Paths">
+              <PropertyRef Name="PathId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationPerUser">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__UserI__55F4C372">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
+          <End Role="aspnet_PersonalizationPerUser" Type="Self.aspnet_PersonalizationPerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationPerUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pr__UserI__2EDAF651">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_Profile" Type="Self.aspnet_Profile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Profile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Ro__Appli__3864608B">
+          <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Roles" Type="Self.aspnet_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Roles">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__Appli__09A971A2">
+          <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Users">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__RoleI__3D2915A8">
+          <End Role="aspnet_Roles" Type="Self.aspnet_Roles" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="Self.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__UserI__3C34F16F">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="Self.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kullanici_aspnet_Users">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Makale_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+          <End Role="Makale" Type="Self.Makale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Makale">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Makale_MakaleTip">
+          <End Role="MakaleTip" Type="Self.MakaleTip" Multiplicity="1" />
+          <End Role="Makale" Type="Self.Makale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MakaleTip">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Makale">
+              <PropertyRef Name="MakaleTipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Makale_MultiMedia1">
+          <End Role="MultiMedia" Type="Self.MultiMedia" Multiplicity="1" />
+          <End Role="Makale" Type="Self.Makale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MultiMedia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Makale">
+              <PropertyRef Name="KapakResimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Makale_Yazar">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Makale" Type="Self.Makale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Makale">
+              <PropertyRef Name="YazarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MakaleEtiket_Etiket">
+          <End Role="Etiket" Type="Self.Etiket" Multiplicity="1" />
+          <End Role="MakaleEtiket" Type="Self.MakaleEtiket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etiket">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MakaleEtiket">
+              <PropertyRef Name="EtiketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MakaleEtiket_Makale">
+          <End Role="Makale" Type="Self.Makale" Multiplicity="1" />
+          <End Role="MakaleEtiket" Type="Self.MakaleEtiket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Makale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MakaleEtiket">
+              <PropertyRef Name="EtiketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MakaleResim_Makale">
+          <End Role="Makale" Type="Self.Makale" Multiplicity="1" />
+          <End Role="MakaleResim" Type="Self.MakaleResim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Makale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MakaleResim">
+              <PropertyRef Name="MakaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MakaleResim_MultiMedia1">
+          <End Role="MultiMedia" Type="Self.MultiMedia" Multiplicity="1" />
+          <End Role="MakaleResim" Type="Self.MakaleResim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MultiMedia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MakaleResim">
+              <PropertyRef Name="ResimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MultiMedia_Yazar1">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="MultiMedia" Type="Self.MultiMedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MultiMedia">
+              <PropertyRef Name="EkleyenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteTakip_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+          <End Role="SiteTakip" Type="Self.SiteTakip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SiteTakip">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteTakip_Yazar">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+          <End Role="SiteTakip" Type="Self.SiteTakip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SiteTakip">
+              <PropertyRef Name="YazarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yazar_MultiMedia1">
+          <End Role="MultiMedia" Type="Self.MultiMedia" Multiplicity="0..1" />
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MultiMedia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="ResimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="YazarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Makale">
+          <End Role="Makale" Type="Self.Makale" Multiplicity="1" />
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Makale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="MakaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YaseminBlogSitesiMVCModelStoreContainer">
+          <EntitySet Name="aspnet_Applications" EntityType="Self.aspnet_Applications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_Membership" EntityType="Self.aspnet_Membership" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_Paths" EntityType="Self.aspnet_Paths" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="Self.aspnet_PersonalizationAllUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="Self.aspnet_PersonalizationPerUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_Profile" EntityType="Self.aspnet_Profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_Roles" EntityType="Self.aspnet_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_SchemaVersions" EntityType="Self.aspnet_SchemaVersions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_UsersInRoles" EntityType="Self.aspnet_UsersInRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="aspnet_WebEvent_Events" EntityType="Self.aspnet_WebEvent_Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Etiket" EntityType="Self.Etiket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Makale" EntityType="Self.Makale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MakaleEtiket" EntityType="Self.MakaleEtiket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MakaleResim" EntityType="Self.MakaleResim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MakaleTip" EntityType="Self.MakaleTip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MultiMedia" EntityType="Self.MultiMedia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yorum" EntityType="Self.Yorum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiteTakip" EntityType="Self.SiteTakip" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SiteTakip].[MailAdress] AS [MailAdress], 
+    [SiteTakip].[YazarID] AS [YazarID], 
+    [SiteTakip].[KategoriID] AS [KategoriID]
+    FROM [dbo].[SiteTakip] AS [SiteTakip]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ZiyaretciIPLog" EntityType="Self.ZiyaretciIPLog" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ZiyaretciIPLog].[IPAddress] AS [IPAddress], 
+    [ZiyaretciIPLog].[Tarih] AS [Tarih]
+    FROM [dbo].[ZiyaretciIPLog] AS [ZiyaretciIPLog]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__aspnet_Me__Appli__19DFD96B" Association="Self.FK__aspnet_Me__Appli__19DFD96B">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Me__UserI__1AD3FDA4" Association="Self.FK__aspnet_Me__UserI__1AD3FDA4">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pa__Appli__4B7734FF" Association="Self.FK__aspnet_Pa__Appli__4B7734FF">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__PathI__51300E55" Association="Self.FK__aspnet_Pe__PathI__51300E55">
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+            <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__PathI__55009F39" Association="Self.FK__aspnet_Pe__PathI__55009F39">
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+            <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__UserI__55F4C372" Association="Self.FK__aspnet_Pe__UserI__55F4C372">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pr__UserI__2EDAF651" Association="Self.FK__aspnet_Pr__UserI__2EDAF651">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Ro__Appli__3864608B" Association="Self.FK__aspnet_Ro__Appli__3864608B">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__Appli__09A971A2" Association="Self.FK__aspnet_Us__Appli__09A971A2">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__RoleI__3D2915A8" Association="Self.FK__aspnet_Us__RoleI__3D2915A8">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__UserI__3C34F16F" Association="Self.FK__aspnet_Us__UserI__3C34F16F">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kullanici_aspnet_Users" Association="Self.FK_Kullanici_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="Kullanici" EntitySet="Kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Makale_Kategori" Association="Self.FK_Makale_Kategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="Makale" EntitySet="Makale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Makale_MakaleTip" Association="Self.FK_Makale_MakaleTip">
+            <End Role="MakaleTip" EntitySet="MakaleTip" />
+            <End Role="Makale" EntitySet="Makale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Makale_MultiMedia1" Association="Self.FK_Makale_MultiMedia1">
+            <End Role="MultiMedia" EntitySet="MultiMedia" />
+            <End Role="Makale" EntitySet="Makale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Makale_Yazar" Association="Self.FK_Makale_Yazar">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Makale" EntitySet="Makale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MakaleEtiket_Etiket" Association="Self.FK_MakaleEtiket_Etiket">
+            <End Role="Etiket" EntitySet="Etiket" />
+            <End Role="MakaleEtiket" EntitySet="MakaleEtiket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MakaleEtiket_Makale" Association="Self.FK_MakaleEtiket_Makale">
+            <End Role="Makale" EntitySet="Makale" />
+            <End Role="MakaleEtiket" EntitySet="MakaleEtiket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MakaleResim_Makale" Association="Self.FK_MakaleResim_Makale">
+            <End Role="Makale" EntitySet="Makale" />
+            <End Role="MakaleResim" EntitySet="MakaleResim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MakaleResim_MultiMedia1" Association="Self.FK_MakaleResim_MultiMedia1">
+            <End Role="MultiMedia" EntitySet="MultiMedia" />
+            <End Role="MakaleResim" EntitySet="MakaleResim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MultiMedia_Yazar1" Association="Self.FK_MultiMedia_Yazar1">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="MultiMedia" EntitySet="MultiMedia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteTakip_Kategori" Association="Self.FK_SiteTakip_Kategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="SiteTakip" EntitySet="SiteTakip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteTakip_Yazar" Association="Self.FK_SiteTakip_Yazar">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="SiteTakip" EntitySet="SiteTakip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yazar_MultiMedia1" Association="Self.FK_Yazar_MultiMedia1">
+            <End Role="MultiMedia" EntitySet="MultiMedia" />
+            <End Role="Kullanici" EntitySet="Kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Kullanici" Association="Self.FK_Yorum_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Yorum" EntitySet="Yorum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Makale" Association="Self.FK_Yorum_Makale">
+            <End Role="Makale" EntitySet="Makale" />
+            <End Role="Yorum" EntitySet="Yorum" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YaseminBlogSitesiMVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="aspnet_Applications">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoweredApplicationName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="aspnet_Membership" Relationship="Self.FK__aspnet_Me__Appli__19DFD96B" FromRole="aspnet_Applications" ToRole="aspnet_Membership" />
+          <NavigationProperty Name="aspnet_Paths" Relationship="Self.FK__aspnet_Pa__Appli__4B7734FF" FromRole="aspnet_Applications" ToRole="aspnet_Paths" />
+          <NavigationProperty Name="aspnet_Roles" Relationship="Self.FK__aspnet_Ro__Appli__3864608B" FromRole="aspnet_Applications" ToRole="aspnet_Roles" />
+          <NavigationProperty Name="aspnet_Users" Relationship="Self.FK__aspnet_Us__Appli__09A971A2" FromRole="aspnet_Applications" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Membership">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordFormat" Type="Int32" Nullable="false" />
+          <Property Name="PasswordSalt" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MobilePIN" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LoweredEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordQuestion" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordAnswer" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="Self.FK__aspnet_Me__Appli__19DFD96B" FromRole="aspnet_Membership" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_Users" Relationship="Self.FK__aspnet_Me__UserI__1AD3FDA4" FromRole="aspnet_Membership" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Paths">
+          <Key>
+            <PropertyRef Name="PathId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="PathId" Type="Guid" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoweredPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="Self.FK__aspnet_Pa__Appli__4B7734FF" FromRole="aspnet_Paths" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_PersonalizationAllUsers" Relationship="Self.FK__aspnet_Pe__PathI__51300E55" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationAllUsers" />
+          <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="Self.FK__aspnet_Pe__PathI__55009F39" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationPerUser" />
+        </EntityType>
+        <EntityType Name="aspnet_PersonalizationAllUsers">
+          <Key>
+            <PropertyRef Name="PathId" />
+          </Key>
+          <Property Name="PathId" Type="Guid" Nullable="false" />
+          <Property Name="PageSettings" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="aspnet_Paths" Relationship="Self.FK__aspnet_Pe__PathI__51300E55" FromRole="aspnet_PersonalizationAllUsers" ToRole="aspnet_Paths" />
+        </EntityType>
+        <EntityType Name="aspnet_PersonalizationPerUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PathId" Type="Guid" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="PageSettings" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="aspnet_Paths" Relationship="Self.FK__aspnet_Pe__PathI__55009F39" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Paths" />
+          <NavigationProperty Name="aspnet_Users" Relationship="Self.FK__aspnet_Pe__UserI__55F4C372" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Profile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="PropertyNames" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PropertyValuesString" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PropertyValuesBinary" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="aspnet_Users" Relationship="Self.FK__aspnet_Pr__UserI__2EDAF651" FromRole="aspnet_Profile" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoweredRoleName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="Self.FK__aspnet_Ro__Appli__3864608B" FromRole="aspnet_Roles" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_Users" Relationship="Self.aspnet_UsersInRoles" FromRole="aspnet_Roles" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_SchemaVersions">
+          <Key>
+            <PropertyRef Name="Feature" />
+            <PropertyRef Name="CompatibleSchemaVersion" />
+          </Key>
+          <Property Name="Feature" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompatibleSchemaVersion" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsCurrentVersion" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoweredUserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MobileAlias" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="aspnet_Applications" Relationship="Self.FK__aspnet_Us__Appli__09A971A2" FromRole="aspnet_Users" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_Membership" Relationship="Self.FK__aspnet_Me__UserI__1AD3FDA4" FromRole="aspnet_Users" ToRole="aspnet_Membership" />
+          <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="Self.FK__aspnet_Pe__UserI__55F4C372" FromRole="aspnet_Users" ToRole="aspnet_PersonalizationPerUser" />
+          <NavigationProperty Name="aspnet_Profile" Relationship="Self.FK__aspnet_Pr__UserI__2EDAF651" FromRole="aspnet_Users" ToRole="aspnet_Profile" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Kullanici_aspnet_Users" FromRole="aspnet_Users" ToRole="Kullanici" />
+          <NavigationProperty Name="aspnet_Roles" Relationship="Self.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
+        </EntityType>
+        <EntityType Name="aspnet_WebEvent_Events">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="EventTimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventSequence" Type="Decimal" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="EventOccurrence" Type="Decimal" Precision="19" Scale="0" Nullable="false" />
+          <Property Name="EventCode" Type="Int32" Nullable="false" />
+          <Property Name="EventDetailCode" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationVirtualPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="MachineName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RequestUrl" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ExceptionType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Etiket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="MakaleEtiket" Relationship="Self.FK_MakaleEtiket_Etiket" FromRole="Etiket" ToRole="MakaleEtiket" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Makale" Relationship="Self.FK_Makale_Kategori" FromRole="Kategori" ToRole="Makale" />
+          <NavigationProperty Name="SiteTakip" Relationship="Self.FK_SiteTakip_Kategori" FromRole="Kategori" ToRole="SiteTakip" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KayitTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Nick" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResimID" Type="Int32" />
+          <Property Name="YazarMi" Type="Boolean" Nullable="false" />
+          <Property Name="Aktif" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="aspnet_Users" Relationship="Self.FK_Kullanici_aspnet_Users" FromRole="Kullanici" ToRole="aspnet_Users" />
+          <NavigationProperty Name="Makale" Relationship="Self.FK_Makale_Yazar" FromRole="Kullanici" ToRole="Makale" />
+          <NavigationProperty Name="MultiMedia" Relationship="Self.FK_MultiMedia_Yazar1" FromRole="Kullanici" ToRole="MultiMedia" />
+          <NavigationProperty Name="SiteTakip" Relationship="Self.FK_SiteTakip_Yazar" FromRole="Kullanici" ToRole="SiteTakip" />
+          <NavigationProperty Name="MultiMedia1" Relationship="Self.FK_Yazar_MultiMedia1" FromRole="Kullanici" ToRole="MultiMedia" />
+          <NavigationProperty Name="Yorum" Relationship="Self.FK_Yorum_Kullanici" FromRole="Kullanici" ToRole="Yorum" />
+        </EntityType>
+        <EntityType Name="Makale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Baslik" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Icerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="YayinTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="KategoriID" Type="Int32" Nullable="false" />
+          <Property Name="MakaleTipID" Type="Int32" Nullable="false" />
+          <Property Name="YazarID" Type="Guid" Nullable="false" />
+          <Property Name="KapakResimID" Type="Int32" Nullable="false" />
+          <Property Name="Goruntulenme" Type="Int32" Nullable="false" />
+          <Property Name="Begeni" Type="Int32" Nullable="false" />
+          <Property Name="Aktif" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Kategori" Relationship="Self.FK_Makale_Kategori" FromRole="Makale" ToRole="Kategori" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Makale_Yazar" FromRole="Makale" ToRole="Kullanici" />
+          <NavigationProperty Name="MakaleTip" Relationship="Self.FK_Makale_MakaleTip" FromRole="Makale" ToRole="MakaleTip" />
+          <NavigationProperty Name="MultiMedia" Relationship="Self.FK_Makale_MultiMedia1" FromRole="Makale" ToRole="MultiMedia" />
+          <NavigationProperty Name="MakaleEtiket" Relationship="Self.FK_MakaleEtiket_Makale" FromRole="Makale" ToRole="MakaleEtiket" />
+          <NavigationProperty Name="Yorum" Relationship="Self.FK_Yorum_Makale" FromRole="Makale" ToRole="Yorum" />
+          <NavigationProperty Name="MultiMedia1" Relationship="Self.MakaleResim" FromRole="Makale" ToRole="MultiMedia" />
+        </EntityType>
+        <EntityType Name="MakaleEtiket">
+          <Key>
+            <PropertyRef Name="MakaleID" />
+            <PropertyRef Name="EtiketID" />
+          </Key>
+          <Property Name="MakaleID" Type="Int32" Nullable="false" />
+          <Property Name="EtiketID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Etiket" Relationship="Self.FK_MakaleEtiket_Etiket" FromRole="MakaleEtiket" ToRole="Etiket" />
+          <NavigationProperty Name="Makale" Relationship="Self.FK_MakaleEtiket_Makale" FromRole="MakaleEtiket" ToRole="Makale" />
+        </EntityType>
+        <EntityType Name="MakaleTip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Makale" Relationship="Self.FK_Makale_MakaleTip" FromRole="MakaleTip" ToRole="Makale" />
+        </EntityType>
+        <EntityType Name="MultiMedia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KucukResimYol" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="OrtaResimYol" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BuyukResimYol" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="VideoYol" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EkleyenID" Type="Guid" Nullable="false" />
+          <Property Name="EklenmeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Goruntulenme" Type="Int32" Nullable="false" />
+          <Property Name="Begeni" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_MultiMedia_Yazar1" FromRole="MultiMedia" ToRole="Kullanici" />
+          <NavigationProperty Name="Kullanici1" Relationship="Self.FK_Yazar_MultiMedia1" FromRole="MultiMedia" ToRole="Kullanici" />
+          <NavigationProperty Name="Makale" Relationship="Self.FK_Makale_MultiMedia1" FromRole="MultiMedia" ToRole="Makale" />
+          <NavigationProperty Name="Makale1" Relationship="Self.MakaleResim" FromRole="MultiMedia" ToRole="Makale" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Yorum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Baslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Icerik" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MakaleID" Type="Int32" Nullable="false" />
+          <Property Name="EklenmeTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="YazarID" Type="Guid" Nullable="false" />
+          <Property Name="Aktif" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Yorum_Kullanici" FromRole="Yorum" ToRole="Kullanici" />
+          <NavigationProperty Name="Makale" Relationship="Self.FK_Yorum_Makale" FromRole="Yorum" ToRole="Makale" />
+        </EntityType>
+        <EntityType Name="SiteTakip">
+          <Key>
+            <PropertyRef Name="MailAdress" />
+          </Key>
+          <Property Name="MailAdress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="YazarID" Type="Guid" />
+          <Property Name="KategoriID" Type="Int32" />
+          <NavigationProperty Name="Kategori" Relationship="Self.FK_SiteTakip_Kategori" FromRole="SiteTakip" ToRole="Kategori" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_SiteTakip_Yazar" FromRole="SiteTakip" ToRole="Kullanici" />
+        </EntityType>
+        <EntityType Name="ZiyaretciIPLog">
+          <Key>
+            <PropertyRef Name="IPAddress" />
+            <PropertyRef Name="Tarih" />
+          </Key>
+          <Property Name="IPAddress" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK__aspnet_Me__Appli__19DFD96B">
+          <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="Self.aspnet_Membership" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pa__Appli__4B7734FF">
+          <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Paths">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Ro__Appli__3864608B">
+          <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Roles" Type="Self.aspnet_Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Roles">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__Appli__09A971A2">
+          <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Applications">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="aspnet_Users">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Me__UserI__1AD3FDA4">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_Membership" Type="Self.aspnet_Membership" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Membership">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__PathI__51300E55">
+          <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="1" />
+          <End Role="aspnet_PersonalizationAllUsers" Type="Self.aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Paths">
+              <PropertyRef Name="PathId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationAllUsers">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__PathI__55009F39">
+          <End Role="aspnet_Paths" Type="Self.aspnet_Paths" Multiplicity="0..1" />
+          <End Role="aspnet_PersonalizationPerUser" Type="Self.aspnet_PersonalizationPerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Paths">
+              <PropertyRef Name="PathId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationPerUser">
+              <PropertyRef Name="PathId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pe__UserI__55F4C372">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="0..1" />
+          <End Role="aspnet_PersonalizationPerUser" Type="Self.aspnet_PersonalizationPerUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_PersonalizationPerUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Pr__UserI__2EDAF651">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_Profile" Type="Self.aspnet_Profile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Profile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kullanici_aspnet_Users">
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="1" />
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MakaleEtiket_Etiket">
+          <End Role="Etiket" Type="Self.Etiket" Multiplicity="1" />
+          <End Role="MakaleEtiket" Type="Self.MakaleEtiket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etiket">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MakaleEtiket">
+              <PropertyRef Name="EtiketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Makale_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+          <End Role="Makale" Type="Self.Makale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Makale">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteTakip_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+          <End Role="SiteTakip" Type="Self.SiteTakip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SiteTakip">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Makale_Yazar">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Makale" Type="Self.Makale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Makale">
+              <PropertyRef Name="YazarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MultiMedia_Yazar1">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="MultiMedia" Type="Self.MultiMedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MultiMedia">
+              <PropertyRef Name="EkleyenID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiteTakip_Yazar">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+          <End Role="SiteTakip" Type="Self.SiteTakip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SiteTakip">
+              <PropertyRef Name="YazarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yazar_MultiMedia1">
+          <End Role="MultiMedia" Type="Self.MultiMedia" Multiplicity="0..1" />
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MultiMedia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kullanici">
+              <PropertyRef Name="ResimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="YazarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Makale_MakaleTip">
+          <End Role="MakaleTip" Type="Self.MakaleTip" Multiplicity="1" />
+          <End Role="Makale" Type="Self.Makale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MakaleTip">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Makale">
+              <PropertyRef Name="MakaleTipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Makale_MultiMedia1">
+          <End Role="MultiMedia" Type="Self.MultiMedia" Multiplicity="1" />
+          <End Role="Makale" Type="Self.Makale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MultiMedia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Makale">
+              <PropertyRef Name="KapakResimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MakaleEtiket_Makale">
+          <End Role="Makale" Type="Self.Makale" Multiplicity="1" />
+          <End Role="MakaleEtiket" Type="Self.MakaleEtiket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Makale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MakaleEtiket">
+              <PropertyRef Name="EtiketID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yorum_Makale">
+          <End Role="Makale" Type="Self.Makale" Multiplicity="1" />
+          <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Makale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Yorum">
+              <PropertyRef Name="MakaleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="aspnet_UsersInRoles">
+          <End Role="aspnet_Roles" Type="Self.aspnet_Roles" Multiplicity="*" />
+          <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="*" />
+        </Association>
+        <Association Name="MakaleResim">
+          <End Role="Makale" Type="Self.Makale" Multiplicity="*" />
+          <End Role="MultiMedia" Type="Self.MultiMedia" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="YaseminBlogSitesiMVCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="aspnet_Applications" EntityType="Self.aspnet_Applications" />
+          <EntitySet Name="aspnet_Membership" EntityType="Self.aspnet_Membership" />
+          <EntitySet Name="aspnet_Paths" EntityType="Self.aspnet_Paths" />
+          <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="Self.aspnet_PersonalizationAllUsers" />
+          <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="Self.aspnet_PersonalizationPerUser" />
+          <EntitySet Name="aspnet_Profile" EntityType="Self.aspnet_Profile" />
+          <EntitySet Name="aspnet_Roles" EntityType="Self.aspnet_Roles" />
+          <EntitySet Name="aspnet_SchemaVersions" EntityType="Self.aspnet_SchemaVersions" />
+          <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" />
+          <EntitySet Name="aspnet_WebEvent_Events" EntityType="Self.aspnet_WebEvent_Events" />
+          <EntitySet Name="Etiket" EntityType="Self.Etiket" />
+          <EntitySet Name="Kategori" EntityType="Self.Kategori" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" />
+          <EntitySet Name="Makale" EntityType="Self.Makale" />
+          <EntitySet Name="MakaleEtiket" EntityType="Self.MakaleEtiket" />
+          <EntitySet Name="MakaleTip" EntityType="Self.MakaleTip" />
+          <EntitySet Name="MultiMedia" EntityType="Self.MultiMedia" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Yorum" EntityType="Self.Yorum" />
+          <EntitySet Name="SiteTakip" EntityType="Self.SiteTakip" />
+          <EntitySet Name="ZiyaretciIPLog" EntityType="Self.ZiyaretciIPLog" />
+          <AssociationSet Name="FK__aspnet_Me__Appli__19DFD96B" Association="Self.FK__aspnet_Me__Appli__19DFD96B">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pa__Appli__4B7734FF" Association="Self.FK__aspnet_Pa__Appli__4B7734FF">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Ro__Appli__3864608B" Association="Self.FK__aspnet_Ro__Appli__3864608B">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__Appli__09A971A2" Association="Self.FK__aspnet_Us__Appli__09A971A2">
+            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Me__UserI__1AD3FDA4" Association="Self.FK__aspnet_Me__UserI__1AD3FDA4">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__PathI__51300E55" Association="Self.FK__aspnet_Pe__PathI__51300E55">
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+            <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__PathI__55009F39" Association="Self.FK__aspnet_Pe__PathI__55009F39">
+            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+            <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pe__UserI__55F4C372" Association="Self.FK__aspnet_Pe__UserI__55F4C372">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Pr__UserI__2EDAF651" Association="Self.FK__aspnet_Pr__UserI__2EDAF651">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kullanici_aspnet_Users" Association="Self.FK_Kullanici_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="Kullanici" EntitySet="Kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MakaleEtiket_Etiket" Association="Self.FK_MakaleEtiket_Etiket">
+            <End Role="Etiket" EntitySet="Etiket" />
+            <End Role="MakaleEtiket" EntitySet="MakaleEtiket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Makale_Kategori" Association="Self.FK_Makale_Kategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="Makale" EntitySet="Makale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteTakip_Kategori" Association="Self.FK_SiteTakip_Kategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="SiteTakip" EntitySet="SiteTakip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Makale_Yazar" Association="Self.FK_Makale_Yazar">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Makale" EntitySet="Makale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MultiMedia_Yazar1" Association="Self.FK_MultiMedia_Yazar1">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="MultiMedia" EntitySet="MultiMedia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteTakip_Yazar" Association="Self.FK_SiteTakip_Yazar">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="SiteTakip" EntitySet="SiteTakip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yazar_MultiMedia1" Association="Self.FK_Yazar_MultiMedia1">
+            <End Role="MultiMedia" EntitySet="MultiMedia" />
+            <End Role="Kullanici" EntitySet="Kullanici" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Kullanici" Association="Self.FK_Yorum_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Yorum" EntitySet="Yorum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Makale_MakaleTip" Association="Self.FK_Makale_MakaleTip">
+            <End Role="MakaleTip" EntitySet="MakaleTip" />
+            <End Role="Makale" EntitySet="Makale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Makale_MultiMedia1" Association="Self.FK_Makale_MultiMedia1">
+            <End Role="MultiMedia" EntitySet="MultiMedia" />
+            <End Role="Makale" EntitySet="Makale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MakaleEtiket_Makale" Association="Self.FK_MakaleEtiket_Makale">
+            <End Role="Makale" EntitySet="Makale" />
+            <End Role="MakaleEtiket" EntitySet="MakaleEtiket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yorum_Makale" Association="Self.FK_Yorum_Makale">
+            <End Role="Makale" EntitySet="Makale" />
+            <End Role="Yorum" EntitySet="Yorum" />
+          </AssociationSet>
+          <AssociationSet Name="aspnet_UsersInRoles" Association="Self.aspnet_UsersInRoles">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="MakaleResim" Association="Self.MakaleResim">
+            <End Role="Makale" EntitySet="Makale" />
+            <End Role="MultiMedia" EntitySet="MultiMedia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YaseminBlogSitesiMVCModelStoreContainer" CdmEntityContainer="YaseminBlogSitesiMVCEntities">
+          <EntitySetMapping Name="aspnet_Applications">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.aspnet_Applications">
+              <MappingFragment StoreEntitySet="aspnet_Applications">
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="LoweredApplicationName" ColumnName="LoweredApplicationName" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Membership">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.aspnet_Membership">
+              <MappingFragment StoreEntitySet="aspnet_Membership">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+                <ScalarProperty Name="MobilePIN" ColumnName="MobilePIN" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LoweredEmail" ColumnName="LoweredEmail" />
+                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Paths">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.aspnet_Paths">
+              <MappingFragment StoreEntitySet="aspnet_Paths">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="PathId" ColumnName="PathId" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="LoweredPath" ColumnName="LoweredPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_PersonalizationAllUsers">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.aspnet_PersonalizationAllUsers">
+              <MappingFragment StoreEntitySet="aspnet_PersonalizationAllUsers">
+                <ScalarProperty Name="PathId" ColumnName="PathId" />
+                <ScalarProperty Name="PageSettings" ColumnName="PageSettings" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_PersonalizationPerUser">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.aspnet_PersonalizationPerUser">
+              <MappingFragment StoreEntitySet="aspnet_PersonalizationPerUser">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PathId" ColumnName="PathId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PageSettings" ColumnName="PageSettings" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Profile">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.aspnet_Profile">
+              <MappingFragment StoreEntitySet="aspnet_Profile">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PropertyNames" ColumnName="PropertyNames" />
+                <ScalarProperty Name="PropertyValuesString" ColumnName="PropertyValuesString" />
+                <ScalarProperty Name="PropertyValuesBinary" ColumnName="PropertyValuesBinary" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Roles">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.aspnet_Roles">
+              <MappingFragment StoreEntitySet="aspnet_Roles">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="LoweredRoleName" ColumnName="LoweredRoleName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_SchemaVersions">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.aspnet_SchemaVersions">
+              <MappingFragment StoreEntitySet="aspnet_SchemaVersions">
+                <ScalarProperty Name="Feature" ColumnName="Feature" />
+                <ScalarProperty Name="CompatibleSchemaVersion" ColumnName="CompatibleSchemaVersion" />
+                <ScalarProperty Name="IsCurrentVersion" ColumnName="IsCurrentVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Users">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.aspnet_Users">
+              <MappingFragment StoreEntitySet="aspnet_Users">
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
+                <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
+                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aspnet_WebEvent_Events">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.aspnet_WebEvent_Events">
+              <MappingFragment StoreEntitySet="aspnet_WebEvent_Events">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="EventTimeUtc" ColumnName="EventTimeUtc" />
+                <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+                <ScalarProperty Name="EventType" ColumnName="EventType" />
+                <ScalarProperty Name="EventSequence" ColumnName="EventSequence" />
+                <ScalarProperty Name="EventOccurrence" ColumnName="EventOccurrence" />
+                <ScalarProperty Name="EventCode" ColumnName="EventCode" />
+                <ScalarProperty Name="EventDetailCode" ColumnName="EventDetailCode" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ApplicationPath" ColumnName="ApplicationPath" />
+                <ScalarProperty Name="ApplicationVirtualPath" ColumnName="ApplicationVirtualPath" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="RequestUrl" ColumnName="RequestUrl" />
+                <ScalarProperty Name="ExceptionType" ColumnName="ExceptionType" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Etiket">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.Etiket">
+              <MappingFragment StoreEntitySet="Etiket">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategori">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.Kategori">
+              <MappingFragment StoreEntitySet="Kategori">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanici">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.Kullanici">
+              <MappingFragment StoreEntitySet="Kullanici">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+                <ScalarProperty Name="Nick" ColumnName="Nick" />
+                <ScalarProperty Name="ResimID" ColumnName="ResimID" />
+                <ScalarProperty Name="YazarMi" ColumnName="YazarMi" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Makale">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.Makale">
+              <MappingFragment StoreEntitySet="Makale">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+                <ScalarProperty Name="YayinTarihi" ColumnName="YayinTarihi" />
+                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+                <ScalarProperty Name="MakaleTipID" ColumnName="MakaleTipID" />
+                <ScalarProperty Name="YazarID" ColumnName="YazarID" />
+                <ScalarProperty Name="KapakResimID" ColumnName="KapakResimID" />
+                <ScalarProperty Name="Goruntulenme" ColumnName="Goruntulenme" />
+                <ScalarProperty Name="Begeni" ColumnName="Begeni" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MakaleEtiket">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.MakaleEtiket">
+              <MappingFragment StoreEntitySet="MakaleEtiket">
+                <ScalarProperty Name="MakaleID" ColumnName="MakaleID" />
+                <ScalarProperty Name="EtiketID" ColumnName="EtiketID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MakaleTip">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.MakaleTip">
+              <MappingFragment StoreEntitySet="MakaleTip">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MultiMedia">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.MultiMedia">
+              <MappingFragment StoreEntitySet="MultiMedia">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="KucukResimYol" ColumnName="KucukResimYol" />
+                <ScalarProperty Name="OrtaResimYol" ColumnName="OrtaResimYol" />
+                <ScalarProperty Name="BuyukResimYol" ColumnName="BuyukResimYol" />
+                <ScalarProperty Name="VideoYol" ColumnName="VideoYol" />
+                <ScalarProperty Name="EkleyenID" ColumnName="EkleyenID" />
+                <ScalarProperty Name="EklenmeTarihi" ColumnName="EklenmeTarihi" />
+                <ScalarProperty Name="Goruntulenme" ColumnName="Goruntulenme" />
+                <ScalarProperty Name="Begeni" ColumnName="Begeni" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yorum">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.Yorum">
+              <MappingFragment StoreEntitySet="Yorum">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+                <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+                <ScalarProperty Name="MakaleID" ColumnName="MakaleID" />
+                <ScalarProperty Name="EklenmeTarihi" ColumnName="EklenmeTarihi" />
+                <ScalarProperty Name="YazarID" ColumnName="YazarID" />
+                <ScalarProperty Name="Aktif" ColumnName="Aktif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiteTakip">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.SiteTakip">
+              <MappingFragment StoreEntitySet="SiteTakip">
+                <ScalarProperty Name="MailAdress" ColumnName="MailAdress" />
+                <ScalarProperty Name="YazarID" ColumnName="YazarID" />
+                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZiyaretciIPLog">
+            <EntityTypeMapping TypeName="YaseminBlogSitesiMVCModel.ZiyaretciIPLog">
+              <MappingFragment StoreEntitySet="ZiyaretciIPLog">
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="aspnet_UsersInRoles" TypeName="YaseminBlogSitesiMVCModel.aspnet_UsersInRoles" StoreEntitySet="aspnet_UsersInRoles">
+            <EndProperty Name="aspnet_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="aspnet_Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="MakaleResim" TypeName="YaseminBlogSitesiMVCModel.MakaleResim" StoreEntitySet="MakaleResim">
+            <EndProperty Name="Makale">
+              <ScalarProperty Name="Id" ColumnName="MakaleID" />
+            </EndProperty>
+            <EndProperty Name="MultiMedia">
+              <ScalarProperty Name="Id" ColumnName="ResimID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

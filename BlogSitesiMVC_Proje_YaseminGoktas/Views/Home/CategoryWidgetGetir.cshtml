@@ -1,0 +1,22 @@
+﻿@model IEnumerable<BlogSitesiMVC_Proje_YaseminGoktas.Models.Kategori>
+
+@{ 
+    Layout = null;
+}
+
+<aside class="single_sidebar_widget post_category_widget">
+    <h4 class="widget_title">K A T E G O R İ L E R</h4>
+    <ul class="list cat-list">
+        @foreach (var kat in Model)
+        {
+            <li>
+                <a href="/Kategori/Index/@kat.Id" class="d-flex justify-content-between">
+                    <p>@kat.Adi</p>
+                    <p>( @kat.Makale.Count() )<p>
+                </a>
+            </li>
+        }
+       
+    </ul>
+    <div class="br"></div>
+</aside>

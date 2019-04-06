@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "GirisYap";
+}
+
+<h2>Giris Yap</h2>
+
+@using (Html.BeginForm("GirisYap", "Kullanici", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr>
+            <td colspan="2">
+                @ViewBag.Mesaj
+            </td>
+        </tr>
+        <tr>
+            <td>Kullanici Adi</td>
+            <td>
+                <input class="form-control" type="text" name="KullaniciAdi" value="" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Parola</td>
+            <td>
+                <input class="form-control" type="password" name="Parola" value="" required />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input class="form-control" type="submit" name="btnGiris" value="Giriş Yap" required />
+            </td>
+        </tr>
+    </table>
+}

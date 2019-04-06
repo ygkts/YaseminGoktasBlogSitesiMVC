@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YaseminBlogSitesiMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Etiket">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Makale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Baslik" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Icerik" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="YayinTarihi" Type="datetime" Nullable="false" />
+    <Property Name="KategoriID" Type="int" Nullable="false" />
+    <Property Name="MakaleTipID" Type="int" Nullable="false" />
+    <Property Name="YazarID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="KapakResimID" Type="int" Nullable="false" />
+    <Property Name="Goruntulenme" Type="int" Nullable="false" />
+    <Property Name="Begeni" Type="int" Nullable="false" />
+    <Property Name="Aktif" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MakaleEtiket">
+    <Key>
+      <PropertyRef Name="MakaleID" />
+      <PropertyRef Name="EtiketID" />
+    </Key>
+    <Property Name="MakaleID" Type="int" Nullable="false" />
+    <Property Name="EtiketID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MakaleResim">
+    <Key>
+      <PropertyRef Name="MakaleID" />
+      <PropertyRef Name="ResimID" />
+    </Key>
+    <Property Name="MakaleID" Type="int" Nullable="false" />
+    <Property Name="ResimID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MakaleTip">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'YaseminBlogSitesiMVC.dbo.Mesajlar' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Mesajlar">
+          <Property Name="GonderenUye" Type="uniqueidentifier" />
+          <Property Name="AlanUye" Type="uniqueidentifier" />
+          <Property Name="Mesaj" Type="nvarchar" MaxLength="500" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="Goruldu" Type="bit" />
+        </EntityType>-->
+  <EntityType Name="MultiMedia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KucukResimYol" Type="nvarchar" MaxLength="500" />
+    <Property Name="OrtaResimYol" Type="nvarchar" MaxLength="500" />
+    <Property Name="BuyukResimYol" Type="nvarchar" MaxLength="500" />
+    <Property Name="VideoYol" Type="nvarchar" MaxLength="500" />
+    <Property Name="EkleyenID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EklenmeTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Goruntulenme" Type="int" Nullable="false" />
+    <Property Name="Begeni" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'YaseminBlogSitesiMVC.dbo.SiteTakip' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SiteTakip">
+    <Key>
+      <PropertyRef Name="MailAdress" />
+    </Key>
+    <Property Name="MailAdress" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="YazarID" Type="uniqueidentifier" />
+    <Property Name="KategoriID" Type="int" />
+  </EntityType>
+  <EntityType Name="Yazar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Soyadi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KayitTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Nick" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ResimID" Type="int" Nullable="false" />
+    <Property Name="Aktif" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Yorum">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Baslik" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Icerik" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="MakaleID" Type="int" Nullable="false" />
+    <Property Name="EklenmeTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Aktif" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'YaseminBlogSitesiMVC.dbo.ZiyaretciIPLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ZiyaretciIPLog">
+    <Key>
+      <PropertyRef Name="IPAddress" />
+      <PropertyRef Name="Tarih" />
+    </Key>
+    <Property Name="IPAddress" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Tarih" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Makale_Kategori">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+    <End Role="Makale" Type="Self.Makale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Makale">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Makale_MakaleTip">
+    <End Role="MakaleTip" Type="Self.MakaleTip" Multiplicity="1" />
+    <End Role="Makale" Type="Self.Makale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MakaleTip">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Makale">
+        <PropertyRef Name="MakaleTipID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Makale_MultiMedia1">
+    <End Role="MultiMedia" Type="Self.MultiMedia" Multiplicity="1" />
+    <End Role="Makale" Type="Self.Makale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MultiMedia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Makale">
+        <PropertyRef Name="KapakResimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Makale_Yazar">
+    <End Role="Yazar" Type="Self.Yazar" Multiplicity="1" />
+    <End Role="Makale" Type="Self.Makale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yazar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Makale">
+        <PropertyRef Name="YazarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MakaleEtiket_Etiket">
+    <End Role="Etiket" Type="Self.Etiket" Multiplicity="1" />
+    <End Role="MakaleEtiket" Type="Self.MakaleEtiket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Etiket">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MakaleEtiket">
+        <PropertyRef Name="EtiketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MakaleEtiket_Makale">
+    <End Role="Makale" Type="Self.Makale" Multiplicity="1" />
+    <End Role="MakaleEtiket" Type="Self.MakaleEtiket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Makale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MakaleEtiket">
+        <PropertyRef Name="EtiketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MakaleResim_Makale">
+    <End Role="Makale" Type="Self.Makale" Multiplicity="1" />
+    <End Role="MakaleResim" Type="Self.MakaleResim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Makale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MakaleResim">
+        <PropertyRef Name="MakaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MakaleResim_MultiMedia1">
+    <End Role="MultiMedia" Type="Self.MultiMedia" Multiplicity="1" />
+    <End Role="MakaleResim" Type="Self.MakaleResim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MultiMedia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MakaleResim">
+        <PropertyRef Name="ResimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MultiMedia_Yazar1">
+    <End Role="Yazar" Type="Self.Yazar" Multiplicity="1" />
+    <End Role="MultiMedia" Type="Self.MultiMedia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yazar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MultiMedia">
+        <PropertyRef Name="EkleyenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteTakip_Kategori">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+    <End Role="SiteTakip" Type="Self.SiteTakip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SiteTakip">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiteTakip_Yazar">
+    <End Role="Yazar" Type="Self.Yazar" Multiplicity="0..1" />
+    <End Role="SiteTakip" Type="Self.SiteTakip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yazar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SiteTakip">
+        <PropertyRef Name="YazarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Yazar_MultiMedia1">
+    <End Role="MultiMedia" Type="Self.MultiMedia" Multiplicity="1" />
+    <End Role="Yazar" Type="Self.Yazar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MultiMedia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Yazar">
+        <PropertyRef Name="ResimID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Yorum_Makale">
+    <End Role="Makale" Type="Self.Makale" Multiplicity="1" />
+    <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Makale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Yorum">
+        <PropertyRef Name="MakaleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="YaseminBlogSitesiMVCModelStoreContainer">
+    <EntitySet Name="Etiket" EntityType="Self.Etiket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Makale" EntityType="Self.Makale" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MakaleEtiket" EntityType="Self.MakaleEtiket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MakaleResim" EntityType="Self.MakaleResim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MakaleTip" EntityType="Self.MakaleTip" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MultiMedia" EntityType="Self.MultiMedia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Yazar" EntityType="Self.Yazar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Yorum" EntityType="Self.Yorum" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SiteTakip" EntityType="Self.SiteTakip" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SiteTakip].[MailAdress] AS [MailAdress], 
+    [SiteTakip].[YazarID] AS [YazarID], 
+    [SiteTakip].[KategoriID] AS [KategoriID]
+    FROM [dbo].[SiteTakip] AS [SiteTakip]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ZiyaretciIPLog" EntityType="Self.ZiyaretciIPLog" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ZiyaretciIPLog].[IPAddress] AS [IPAddress], 
+    [ZiyaretciIPLog].[Tarih] AS [Tarih]
+    FROM [dbo].[ZiyaretciIPLog] AS [ZiyaretciIPLog]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Makale_Kategori" Association="Self.FK_Makale_Kategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Makale" EntitySet="Makale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Makale_MakaleTip" Association="Self.FK_Makale_MakaleTip">
+      <End Role="MakaleTip" EntitySet="MakaleTip" />
+      <End Role="Makale" EntitySet="Makale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Makale_MultiMedia1" Association="Self.FK_Makale_MultiMedia1">
+      <End Role="MultiMedia" EntitySet="MultiMedia" />
+      <End Role="Makale" EntitySet="Makale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Makale_Yazar" Association="Self.FK_Makale_Yazar">
+      <End Role="Yazar" EntitySet="Yazar" />
+      <End Role="Makale" EntitySet="Makale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MakaleEtiket_Etiket" Association="Self.FK_MakaleEtiket_Etiket">
+      <End Role="Etiket" EntitySet="Etiket" />
+      <End Role="MakaleEtiket" EntitySet="MakaleEtiket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MakaleEtiket_Makale" Association="Self.FK_MakaleEtiket_Makale">
+      <End Role="Makale" EntitySet="Makale" />
+      <End Role="MakaleEtiket" EntitySet="MakaleEtiket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MakaleResim_Makale" Association="Self.FK_MakaleResim_Makale">
+      <End Role="Makale" EntitySet="Makale" />
+      <End Role="MakaleResim" EntitySet="MakaleResim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MakaleResim_MultiMedia1" Association="Self.FK_MakaleResim_MultiMedia1">
+      <End Role="MultiMedia" EntitySet="MultiMedia" />
+      <End Role="MakaleResim" EntitySet="MakaleResim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MultiMedia_Yazar1" Association="Self.FK_MultiMedia_Yazar1">
+      <End Role="Yazar" EntitySet="Yazar" />
+      <End Role="MultiMedia" EntitySet="MultiMedia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteTakip_Kategori" Association="Self.FK_SiteTakip_Kategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="SiteTakip" EntitySet="SiteTakip" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiteTakip_Yazar" Association="Self.FK_SiteTakip_Yazar">
+      <End Role="Yazar" EntitySet="Yazar" />
+      <End Role="SiteTakip" EntitySet="SiteTakip" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Yazar_MultiMedia1" Association="Self.FK_Yazar_MultiMedia1">
+      <End Role="MultiMedia" EntitySet="MultiMedia" />
+      <End Role="Yazar" EntitySet="Yazar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Yorum_Makale" Association="Self.FK_Yorum_Makale">
+      <End Role="Makale" EntitySet="Makale" />
+      <End Role="Yorum" EntitySet="Yorum" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

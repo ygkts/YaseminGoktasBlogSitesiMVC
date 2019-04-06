@@ -1,0 +1,44 @@
+﻿@using BlogSitesiMVC_Proje_YaseminGoktas.Models
+
+@model List<Makale>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<a href="/Yonetim/MakaleYaz"><button type="button" class="btn btn-dark" style="width:300px;">Makale Ekle</button></a>
+<p></p>
+<table class="table table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Başlık</th>
+        <th>İçerik</th>
+        <th>Yayın Tarihi</th>
+        <th>Kategori</th>
+        <th>Makale Tip</th>
+        <th>Yazar</th>
+        <th>Kapak Resim</th>
+        <th>Görüntülenme</th>
+        <th>Beğeni</th>
+        <th>Aktif</th>
+    </tr>
+    @foreach (var makale in Model)
+    {
+        <tr>
+            <td>@makale.Id</td>
+            <td>@makale.Baslik</td>
+            <td><textarea rows="10">@makale.Icerik</textarea></td>
+            <td>@makale.YayinTarihi</td>
+            <td>@makale.Kategori.Adi</td>
+            <td>@makale.MakaleTip.Adi.</td>
+            <td>@makale.Kullanici.Adi @makale.Kullanici.Soyadi </td>
+            <td>@makale.MultiMedia.BuyukResimYol</td>
+            <td>@makale.Goruntulenme</td>
+            <td>@makale.Begeni</td>
+            <td>@makale.Aktif</td>
+            <td><a href="/Kategoriler/Guncelle/@makale.Id"><button type="button" class="btn btn-info">Güncelle</button></a></td>
+            <td><a href="/Kategoriler/Sil/@makale.Id"><button type="button" class="btn btn-danger">Sil</button></a></td>
+        </tr>
+    }
+</table>

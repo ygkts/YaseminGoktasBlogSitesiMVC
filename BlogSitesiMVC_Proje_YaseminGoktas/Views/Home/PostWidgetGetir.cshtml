@@ -1,0 +1,45 @@
+﻿@{ 
+    Layout = null;
+}
+
+<aside class="single_sidebar_widget popular_post_widget">
+    <h3 class="widget_title">M A K A L E L E R</h3>
+    <h6 class="widget_title"><a href="#populer">P o p ü l e r </a> / <a href="#yeni">Y e n i</a></h6>
+    @{
+        BlogSitesiMVC_Proje_YaseminGoktas.Models.Makale m = new BlogSitesiMVC_Proje_YaseminGoktas.Models.Makale();
+    }
+
+    <div id="populer">
+        @foreach (var pop in ViewBag.Populer)
+        {
+            <div class="media post_item">
+                <a href="/Makale/Detay/@pop.Id">
+                    <img src="@pop.MultiMedia.KucukResimYol" alt="post">
+                </a>
+                <div class="media-body">
+                    <a href="/Makale/Detay/@pop.Id">@pop.Baslik</a>
+                    <a href="/Kategori/Index/@pop.KategoriID"> <p>@pop.Kategori.Adi</p> </a>
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <div id="yeni">
+    @foreach (var son in ViewBag.Yeniler)
+    {
+        <div class="media post_item">
+            <a href="/Makale/Detay/@son.Id">
+                <img src="@son.MultiMedia.KucukResimYol" alt="post">
+            </a>
+            <div class="media-body">
+                <a href="/Makale/Detay/@son.Id">@son.Baslik</a>
+                <a href="/Kategori/Index/@son.KategoriID"> <p>@son.Kategori.Adi</p> </a>
+            </div>
+        </div>
+    </div>
+   
+   
+    }
+    <div class="br"></div>
+</aside>

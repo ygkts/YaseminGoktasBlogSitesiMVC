@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "Detay";
+}
+
+@model BlogSitesiMVC_Proje_YaseminGoktas.Models.Makale
+
+@helper SureYaz(DateTime tarih)
+{
+    TimeSpan sure = DateTime.Now - tarih;
+    if (sure.TotalMilliseconds < 0) // yanlış tarih değeri girlmesi durumu
+    {
+            <p class="date"> </p>
+    }
+    else if (sure.TotalMinutes < 1)
+    {
+            <p class="date">Şimdi</p>
+    }
+    else if (sure.TotalHours < 1)
+    {
+            <p class="date">@sure.Minutes Dakika Önce</p>
+    }
+    else if (sure.TotalDays < 1)
+    {
+            <p class="date">@sure.Hours Saat Önce</p>
+    }
+    else
+    {
+            <p class="date">@tarih.ToString("dd.MM.yyyy") tarihinde</p>
+    }
+
+}
+
+    <div class="single-post row">
+        <div class="col-lg-12">
+            <div class="feature-img">
+                <img class="img-fluid" src="img/blog/feature-img1.jpg" alt="">
+            </div>
+        </div>
+        <div class="col-lg-3  col-md-3">
+            <div class="blog_info text-right">
+                @*<div class="post_tag">
+                    <a href="#">Food,</a>
+                    <a class="active" href="#">Technology,</a>
+                    <a href="#">Politics,</a>
+                    <a href="#">Lifestyle</a>
+                </div>*@
+                <div class="post_tag">
+                    <a href="/Kategori/Index/@Model.KategoriID">@Model.Kategori.Adi</a>
+                </div>
+                <ul class="blog_meta list">
+                    <li><a href="/Makale/TariheGoreListe ? yil = @Model.YayinTarihi.Year & ay= @Model.YayinTarihi.Month">{ @Model.YayinTarihi.ToString("MMMM yyyy") }<i class="lnr lnr-calendar-full"></i></a></li>
+                    <li><a href="#"><i class="lnr lnr-eye">Görüntülenme : @Model.Goruntulenme</i></a></li>
+                    <li><a href="/Yazar/Index/@Model.YazarID">@Model.Kullanici.Adi @Model.Kullanici.Soyadi <i class="lnr lnr-bubble"></i></a></li>
+                    <li><a href="#Yorum"><i class="lnr lnr-eye">Yorumlar : @Model.Yorum.Count()</i></a></li>
+                    <li><a href="#"><i class="lnr lnr-eye">Beğeniler : @Model.Begeni</i></a></li>
+                </ul>
+                <ul class="social-links">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9 blog_details">
+            <h2><a href="/Makale/Detay/@Model.Id">@Model.Baslik</a></h2>
+            <p class="excert">
+                @Model.Icerik
+            </p>           
+        </div>
+    </div>
+    <div class="navigation-area">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                <div class="thumb">
+                    <a href="/Yazar/Index/@Model.YazarID"><img class="img-fluid" src="@Model.Kullanici.MultiMedia1.KucukResimYol" alt=""></a>
+                </div>
+                <div class="arrow">
+                    <a href="/Yazar/MakaleListele/@Model.YazarID"><span class="lnr text-white"></span></a>
+                </div>
+                <div class="detials">
+                    <p>@Model.Kullanici.Mail</p>
+                    <a href="#"><h4>@Model.Kullanici.Adi @Model.Kullanici.Soyadi</h4></a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                <div class="detials">
+                    <p>Katılım Tarihi :  @Model.Kullanici.KayitTarihi</p>
+                    <h4><a href="#">@Model.Kullanici.Makale.Count()</a> adet makale.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+<a id="Yorum"/>
+    <div class="comments-area">
+        <h4>@Model.Yorum.Count() Yorum</h4>
+        @foreach (var yorum in Model.Yorum)
+        {
+            <div class="comment-list">
+                <div class="single-comment justify-content-between d-flex">
+                    <div class="user justify-content-between d-flex">
+                        <div class="thumb">
+                            <img src="@yorum.Kullanici.MultiMedia1.KucukResimYol" alt="">
+                        </div>
+                        <div class="desc">
+                            <h5><a href="#">@yorum.Kullanici.Adi @yorum.Kullanici.Soyadi</a></h5>
+                            @SureYaz(yorum.EklenmeTarihi)
+                            <p class="comment">
+                                @yorum.Icerik
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+@{ 
+    BlogSitesiMVC_Proje_YaseminGoktas.Models.Kullanici k = new BlogSitesiMVC_Proje_YaseminGoktas.Models.Kullanici();
+}
+@if (ViewBag.Kullanici != null)  // şuanki kullanıcıyı almak
+{
+<div class="comment-form">
+    <h4>Yorum Yazın</h4>
+    <div class="user">
+        <figure>
+            <img src="@ViewBag.Kullanici.MultiMedia1.KucukResim Yol" />
+        </figure>
+        <div class="name text-center">
+            <a href="#">@ViewBag.Kullanici.Adi @ViewBag.Kullanici.Soyadi</a>
+        </div>
+    </div>
+    <div class="textarea-wrap">
+        <form action="/Makale/YorumYaz">
+            <input type="hidden" name="YazarID" value="@ViewBag.Kullanici.Id"/>
+            <input type="hidden" name="MakaleID" value="@Model.Id" />
+            <textarea name="Icerik" placeholder="Tatlı bir şeyler yaz.."></textarea>
+            <button type="submit" class="send">Gönder</button>
+        </form>
+    </div>
+    <form>
+        @*<div class="form-group form-inline">
+                <div class="form-group col-lg-6 col-md-6 name">
+                    <input type="text" class="form-control" id="name" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">
+                </div>
+                <div class="form-group col-lg-6 col-md-6 email">
+                    <input type="email" class="form-control" id="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+            </div>
+            <a href="#" class="primary-btn submit_btn">Post Comment</a>*@
+    </form>
+</div>
+}

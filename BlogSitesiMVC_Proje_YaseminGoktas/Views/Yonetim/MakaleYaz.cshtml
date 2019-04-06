@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "MakaleYaz";
+}
+
+@model BlogSitesiMVC_Proje_YaseminGoktas.Models.Makale
+
+<div class="tabs-top">
+    
+    @*<section class="blog_categorie_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <a href="#top-tab1">
+                        <div class="categories_post">
+                            <img src="~/Content/img/blog/cat-post/cat-post-3.jpg" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5>Metin Ekle</h5>
+                                    <div class="border_line"></div>
+                                    <p>Buradan Metin Makalesi Ekleyebilirsiniz.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <a href="#top-tab2">
+                        <div class="categories_post">
+                            <img src="~/Content/img/blog/cat-post/cat-post-2.jpg" alt="post">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5>Galeri Ekle</h5>
+                                    <div class="border_line"></div>
+                                    <p>Buradan Bir Resim Galerisi Ekleyebilirsiniz.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>*@
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#top-tab1" data-toggle="tab">Metin</a>
+        </li>
+        <li>
+            <a href="#top-tab2" data-toggle="tab">Resim Galerisi</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="top-tab1">
+            <br />
+            <a href="/Yonetim/Index"><button type="button" class="btn btn-dark" style="width:300px;">Geri Dön</button></a>
+            <p></p>
+
+            @using (Html.BeginForm("MakaleYaz", "Yonetim", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Baslik)
+                    @Html.TextBoxFor(x => x.Baslik, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Icerik)
+                    @Html.TextAreaFor(x => x.Icerik, new { @class = "form-control", @rows = "10" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Etiket")
+                    <input class="form-control" type="text" name="etiketler" value="" />
+                </div>
+                <div class="form-group">
+                    @Html.Label("Kategori")
+                    <br />
+                    @Html.DropDownListFor(m => m.KategoriID, (SelectList)ViewBag.Kategoriler, new { @class = "form-control" })
+                    @*<select name="KategoriID" class="form-control">
+                            @foreach (var kategori in ViewBag.Kategoriler)
+                            {
+                                <option value="@kategori.Id">@kategori.Adi</option>
+                            }
+                        </select>*@
+                    <br />
+                </div>
+                <div class="form-group">
+                    @Html.Label("Kapak Resim")
+                    <br />
+                    <input type="file" name="Resim" value="" />
+                    <br />
+                </div>
+                @Html.HiddenFor(m => m.Id)  @*güncelleme için arka planda id'yi saklıyor*@
+                <button type="submit" class="btn btn-success">Kaydet</button>
+            }
+        </div>
+        <div class="tab-pane" id="top-tab2">
+            Galeri
+        </div>
+    </div>
+</div>
+
+
+
+

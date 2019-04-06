@@ -1,0 +1,53 @@
+﻿@{ 
+    Layout = null;
+}
+@model IEnumerable<BlogSitesiMVC_Proje_YaseminGoktas.Models.Makale>
+
+@helper Kisalt(string metin)
+{
+    if (metin.Length > 300)
+    {
+            <p>@metin.Substring(0, 300);</p>
+    }
+    else
+    {
+            <p>@metin</p>
+    }
+}
+
+@foreach (var makale in Model)
+{
+    <article class="row blog_item">
+        <div class="col-md-3">
+            <div class="blog_info text-right">
+                @*<div class="post_tag">
+                    <a href="/Kategori/">Food,</a>
+                    <a class="active" href="#">Technology,</a>
+                    <a href="#">Politics,</a>
+                    <a href="#">Lifestyle</a>
+                </div>*@
+                <div class="post_tag">
+                    <a href="/Kategori/Index/@makale.KategoriID">@makale.Kategori.Adi</a>
+                </div>
+                <ul class="blog_meta list">
+                    <li><a href="/Makale/TariheGoreListe ? yil = @makale.YayinTarihi.Year & ay= @makale.YayinTarihi.Month">{ @makale.YayinTarihi.ToString("MMMM yyyy") }<i class="lnr lnr-calendar-full"></i></a></li>
+                    <li><a href="#"><i class="lnr lnr-eye">Görüntülenme : @makale.Goruntulenme</i></a></li>
+                    <li><a href="/Yazar/Index/@makale.YazarID">@makale.Kullanici.Adi @makale.Kullanici.Soyadi <i class="lnr lnr-bubble"></i></a></li>
+                    <li><a href="#"><i class="lnr lnr-eye">Yorumlar : @makale.Yorum.Count()</i></a></li>
+                    <li><a href="#"><i class="lnr lnr-eye">Beğeniler : @makale.Begeni</i></a></li> 
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="blog_post">
+                <a href="/Makale/Detay/@makale.Id"><img src="@makale.MultiMedia.OrtaResimYol" alt=""></a>
+                <div class="blog_details">
+                    <a href="/Makale/Detay/@makale.Id"><h2>@makale.Baslik</h2></a>
+                    <p>@{ Kisalt(makale.Icerik); }</p>
+                    <a href="/Makale/Detay/@makale.Id" class="white_bg_btn">Devamı..</a>
+                </div>
+            </div>
+        </div>
+    </article>
+}
